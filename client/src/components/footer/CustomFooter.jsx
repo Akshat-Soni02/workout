@@ -1,9 +1,10 @@
 import React from "react";
+import { Heading, LightText, Title } from "../customTypo/CustomTypo";
 import { Box, Typography, IconButton } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import "@fontsource/poppins"; // Ensure Poppins is imported
+import "@fontsource/poppins";
 
 const CustomFooter = () => {
   return (
@@ -18,13 +19,12 @@ const CustomFooter = () => {
         fontFamily: "'Poppins', sans-serif",
       }}
     >
-      <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
-        My Website
-      </Typography>
+  
+      <Heading sx={{color: "white", fontSize: "2.2rem", marginBottom: "1rem"}}>Workout</Heading>
 
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 1 }}>
         {["Home", "About", "Contact"].map((item) => (
-          <Typography
+          <LightText
             key={item}
             variant="body2"
             sx={{
@@ -34,7 +34,7 @@ const CustomFooter = () => {
             }}
           >
             {item}
-          </Typography>
+          </LightText>
         ))}
       </Box>
 
@@ -46,9 +46,9 @@ const CustomFooter = () => {
         ))}
       </Box>
 
-      <Typography variant="body2" sx={{ mt: 2 }}>
-        © {new Date().getFullYear()} My Website. All rights reserved.
-      </Typography>
+      <LightText variant="body2" sx={{ mt: 2 }}>
+        © {new Date().getFullYear()} Workout. All rights reserved.
+      </LightText>
     </Box>
   );
 };
