@@ -1,0 +1,13 @@
+.workoutplans{
+        display: grid;
+        justify-content: center;
+        grid-template-columns: auto auto;
+        padding: 10px;
+      }
+
+.workoutpage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}

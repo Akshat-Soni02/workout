@@ -1,6 +1,9 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import "@fontsource/poppins";
+import { FaDumbbell } from "react-icons/fa6";
+import { FaRepeat } from "react-icons/fa6";
+
 
 
 export const Heading = ({ children, level = "h1", ...props }) => (
@@ -39,4 +42,18 @@ export const LightText = ({ children, ...props }) => (
   >
     {children}
   </Typography>
+);
+
+export const ExerciseText = ({ children, ...props }) => (
+  <div style={{ display: "flex",margin : "5px"}}>
+    <FaDumbbell size={23} style={{ paddingRight: "5px"}} />
+    <LightText sx = {{color: "black",fontSize: "18px"}}> {children} </LightText>
+  </div>
+);
+
+export const RepeationText = ({ children, ...props }) => (
+  <div style={{ display: "flex",margin : "5px"}}>
+    <FaRepeat size={20} style={{ paddingRight: "5px"}} />
+    <LightText sx = {{color: "black",fontSize: "18px"}}> {children} </LightText>
+  </div>
 );
