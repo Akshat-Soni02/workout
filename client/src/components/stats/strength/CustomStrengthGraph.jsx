@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LineChart } from "@mui/x-charts/LineChart";
+// import { LineChart } from "@mui/x-charts/LineChart";
 import { Button } from "@mui/material";
 import ShadowCard from "../../shadowCard/ShadowCard";
 
@@ -33,7 +33,7 @@ const CustomStrengthGraph = ({ weeklyData = [], monthlyData = [] }) => {
         </Button>
       </div>
 
-      <LineChart
+      {/* <LineChart
         xAxis={[
           { 
             data: xAxisNumbers,
@@ -47,7 +47,7 @@ const CustomStrengthGraph = ({ weeklyData = [], monthlyData = [] }) => {
         height={400}
         tooltip
         legend
-      />
+      /> */}
     </ShadowCard>
   );
 };

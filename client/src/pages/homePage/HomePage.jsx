@@ -22,9 +22,9 @@ const HomePage = () => {
                 {/* <CustomHeader/> */}
                 {/* <CustomFooter/> */}
                 {/* <ShadowCard /> */}
-                <div className="chart">
+                {/* <div className="chart">
                     <CustomStrengthGraph weeklyData={weeklyData} monthlyData={monthlyData} />
-                </div>
+                </div> */}
             </div>
         </>
     );
