@@ -4,6 +4,8 @@ import CustomInput from "../customInput/CustomInput.jsx";
 import CustomButton from "../button/CustomButton.jsx";
 import { Heading, Title, LightText } from "../customTypo/CustomTypo.jsx";
 
+import "./style.css";
+
 const RecordSet = () => {
 
   const {
@@ -17,17 +19,16 @@ const RecordSet = () => {
   };
 
   return (
-    <div className="signupPage">
-      <form onSubmit={handleSubmit(onSubmit)} className="signupForm">
-        <Heading>Create an account</Heading>
+    <form onSubmit={handleSubmit(onSubmit)} className="recordSetForm">
+        <Title style = {{fontSize: "2rem"}}>Set 1</Title>
         <CustomInput
-          name="username"
+          name="reps"
           control={control}
           rules={{
-            required: "Username is required",
+            required: "Reps are required",
           }}
-          label="Username"
-          type="username"
+          label="Total Reps"
+          type="reps"
           sx={{
             width: "350px"
           }}
@@ -35,40 +36,26 @@ const RecordSet = () => {
 
 
         <CustomInput
-          name="email"
+          name="weight"
           control={control}
-          rules={{
-            required: "Email is required",
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-              message: "Invalid email format",
-            },
-          }}
-          label="Email"
-          type="email"
+          label="Weight Lifted"
+          type="weight"
           sx={{
             width: "350px"
           }}
         />
 
         <CustomInput
-          name="password"
+          name="duration"
           control={control}
-          rules={{
-            required: "Password is required",
-            minLength: {
-              value: 8,
-              message: "Password must be at least 8 characters long",
-            },
-          }}
-          label="Password"
-          type="password"
+          label="Duration"
+          type="duration"
           sx={{
             width: "350px"
           }}
         />
 
-        <CustomButton
+        {/* <CustomButton
         type="submit"
         sx={{
             width: "250px",
@@ -76,10 +63,8 @@ const RecordSet = () => {
         }}
         >
         Submit
-        </CustomButton>
-        <LightText>Already have an account? <span className="logRed">Log in</span></LightText>
+        </CustomButton> */}
       </form>
-    </div>
   );
 }
 
