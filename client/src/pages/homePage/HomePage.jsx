@@ -14,7 +14,7 @@ const HomePage = () => {
                 {/* <CustomInput id={"aaa"} label={"aaa"}/> */}
                 <CustomHeader/>
                 <CustomFooter/>
-                {/* <ShadowCard /> */}
+                <ShadowCard />
             </div>
         </>
     );
