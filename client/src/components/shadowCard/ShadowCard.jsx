@@ -25,10 +25,7 @@ const ShadowCard = ({
         //   gap: "1rem",
         }}
         >
-          
-          {children && (
-            {children}
-          )}
+          {children}
         </CardContent>
       </Card>
     );

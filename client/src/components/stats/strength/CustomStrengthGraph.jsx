@@ -24,30 +24,32 @@ const CustomStrengthGraph = ({ weeklyData = [], monthlyData = [] }) => {
 
   return (
     <ShadowCard className="StrengthChart">
-      <div style={{ display: "flex", justifyContent: "center", marginBottom: "10px" }}>
-        <Button variant={view === "week" ? "contained" : "outlined"} onClick={() => setView("week")}>
-          Weekly
-        </Button>
-        <Button variant={view === "month" ? "contained" : "outlined"} onClick={() => setView("month")} style={{ marginLeft: "10px" }}>
-          Monthly
-        </Button>
-      </div>
+        <div>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "10px" }}>
+            <Button variant={view === "week" ? "contained" : "outlined"} onClick={() => setView("week")}>
+            Weekly
+            </Button>
+            <Button variant={view === "month" ? "contained" : "outlined"} onClick={() => setView("month")} style={{ marginLeft: "10px" }}>
+            Monthly
+            </Button>
+        </div>
 
-      {/* <LineChart
-        xAxis={[
-          { 
-            data: xAxisNumbers,
-            scaleType: "band",
-            label: view === "week" ? "Days of the Week" : "Months",
-            valueFormatter: (value) => xAxisLabels[value]
-          }
-        ]}
-        series={[{ data: sanitizedData, label: "Weight", color: "green" }]}
-        width={600}
-        height={400}
-        tooltip
-        legend
-      /> */}
+        <LineChart
+            xAxis={[
+            { 
+                data: xAxisNumbers,
+                scaleType: "band",
+                label: view === "week" ? "Days of the Week" : "Months",
+                valueFormatter: (value) => xAxisLabels[value]
+            }
+            ]}
+            series={[{ data: sanitizedData, label: "Weight", color: "green" }]}
+            width={600}
+            height={400}
+            tooltip
+            legend
+        />
+        </div>
     </ShadowCard>
   );
 };
