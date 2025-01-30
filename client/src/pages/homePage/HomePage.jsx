@@ -11,7 +11,7 @@ const HomePage = () => {
         <>
             <div className="home">
                 {/* <CustomCard title={"Workout plan 1"}>Too much content</CustomCard> */}
-                {/* <CustomInput id={"aaa"} label={"aaa"}/> */}
+                <CustomInput id={"aaa"} label={"aaa"}/>
                 <CustomHeader/>
                 <CustomFooter/>
                 <ShadowCard />
