@@ -4,6 +4,12 @@ import HomePage from './pages/homePage/HomePage.jsx';
 import SignupPage from './pages/auth/signupPage/SignupPage.jsx';
 import LoginPage from './pages/auth/loginPage/LoginPage.jsx';
 import MainPage from './pages/MainPage/Mainpage';
+import BackExercise from './pages/exercises/backexercise/BackExercise.jsx';
+import ChestExercise from './pages/exercises/chestexercise/ChestExercise.jsx';
+import TricepsExercise from './pages/exercises/tricepsexercise/TricepsExercise.jsx';
+import LegsWorkout from './pages/exercises/legsworkout/LegsWorkout.jsx';
+import ShoulderExercise from './pages/exercises/shoulderexercsie/ShoulderExercise.jsx';
+import CoreWorkout from './pages/exercises/coreworkout/CoreWorkout.jsx';
 
 function App() {
   return (
@@ -14,6 +20,12 @@ function App() {
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/register" element={<SignupPage/>} />
           <Route path="/mainpage" element={<MainPage/>} />
+          <Route path="/exercises/backexercise/BackExercise" element={<BackExercise/>}/>
+          <Route path="/exercises/chestexercise/ChestExercise" element={<ChestExercise/>}/>
+          <Route path="/exercises/tricepsexercise/TricepsExercise" element={<TricepsExercise/>}/>
+          <Route path="/exercises/legsworkout/LegsWorkout" element={<LegsWorkout/>}/>
+          <Route path="/exercises/shoulderexercise/ShoulderExercise" element={<ShoulderExercise/>}/>
+          <Route path="/exercises/coreworkout/CoreWorkout" element={<CoreWorkout/>}/>
         </Routes>
       </Router>
     </div>

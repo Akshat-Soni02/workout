@@ -1,5 +1,8 @@
 .image-grid{
-    margin:45px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-right: 100px;
+  margin-left: 100px;
 } 
 
 /* .main-page {
@@ -26,5 +29,5 @@
     position: relative;
     z-index: 1; 
     padding-bottom: 50px; 
-  } */
-  
+  }
+   */

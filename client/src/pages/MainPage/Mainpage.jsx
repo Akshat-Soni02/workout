@@ -9,7 +9,6 @@ import fifthimg from "../../assets/fifthimg.webp";
 import sixthimg from "../../assets/sixthimg.webp";
 import seventhimg from "../../assets/seventhimg.webp"
 import CustomFooter from "../../components/footer/CustomFooter";
-import backimg from "../../assets/backimg.avif";
 import "./MainPage.css";
 import SideImage from "../../components/gridimage/sideimage";
 import { Heading } from "../../components/customTypo/CustomTypo";
@@ -45,13 +44,14 @@ const MainPage = () => {
     <Heading style={{ margin: "20px" }}>
       <center>Want To Know More!</center>
     </Heading>
-    <div className="image-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", alignItems: "center", width: "100%", maxWidth: "1800px" }}>
-      <SideImage imgSrc={secondimg}/>
-      <SideImage imgSrc={thirdimg}/>
-      <SideImage imgSrc={fourthimg}/>
-      <SideImage imgSrc={fifthimg}/>
-      <SideImage imgSrc={sixthimg}/>
-      <SideImage imgSrc={seventhimg}/>
+    <div className="image-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px", alignItems: "center", width: "100%", maxWidth: "1700px" }}>
+    <SideImage imgSrc={secondimg} exercise="Back Exercise" targetRoute="../exercises/backexercise/BackExercise" />
+    <SideImage imgSrc={thirdimg} exercise="Chest Exercise" targetRoute="../exercises/chestexercise/ChestExercise" />
+    <SideImage imgSrc={fourthimg} exercise="Triceps Exercise" targetRoute="../exercises/tricepsexercise/TricepsExercise" />
+    <SideImage imgSrc={fifthimg} exercise="Legs Workout" targetRoute="../exercises/legsworkout/LegsWorkout" />
+    <SideImage imgSrc={sixthimg} exercise="Shoulder Exercise" targetRoute="../exercises/shoulderexercise/ShoulderExercise" />
+    <SideImage imgSrc={seventhimg} exercise="Core Workout" targetRoute="../exercises/coreworkout/CoreWorkout" />
+
     </div>
   </main>
   <CustomFooter />

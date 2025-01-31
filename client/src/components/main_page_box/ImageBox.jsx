@@ -15,7 +15,7 @@ const ImageBox = ({ imgSrc, targetRoute }) => {
           <img
             src={imgSrc} 
             alt="Your content"
-            className="image-content"
+            className="image-contentmain"
           />
         </center>
       </div>
