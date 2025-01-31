@@ -5,18 +5,21 @@ import CustomForm from "../../components/customForm/CustomForm.jsx";
 import ShadowCard from "../../components/shadowCard/ShadowCard.jsx";
 import WorkoutCard from "../../components/workoutCard/WorkoutCard.jsx";
 import RecordLogParent from "../../components/recordLog/RecordLogParent.jsx";
+import "./style.css"
 
-
-const temp = ['item1','item2','item3','item4'];
 
 const HomePage = () => {
+    const weeklyData = [50, 55, 53, 60, 58, 62, 65];
+    const monthlyData = [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310];
+
+
     return (
         <>
             <div className="home">
-                <WorkoutCard title={"Workout plan 1"} exercises = {temp} btnText={"Edit"}>Too much content</WorkoutCard>
+                <WorkoutCard title={"Workout plan 1"} btnText={"Edit"}>Too much content</WorkoutCard>
                 {/* <CustomInput id={"aaa"} label={"aaa"}/> */}
                 {/* <ShadowCard/> */}
-                <RecordLogParent/>
+                <RecordLogParent/>     
             </div>
         </>
     );
