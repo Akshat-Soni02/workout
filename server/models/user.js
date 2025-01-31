@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const userSchema = new mongoose.Schema({
 
@@ -15,7 +15,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         select: false,
-    }
+    },
+    workout: [{
+        type: Types.ObjectId
+    }]
 });
 
 const user = mongoose.model("user", userSchema);

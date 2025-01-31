@@ -26,11 +26,11 @@ export const register = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     curUser = await user.create({
       name,
-      email,
+      email,    
       password: hashedPassword,
     });
 
-    sendCookie(curUser, res, "Welcome to Work", 201);
+    sendCookie(curUser, res, "Welcome to Workout", 201);
   } catch (error) {
     next(error);
   }
