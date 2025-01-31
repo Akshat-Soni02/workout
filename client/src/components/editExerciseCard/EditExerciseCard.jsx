@@ -7,7 +7,7 @@ import NumberField from "../numberField/NumberField.jsx";
 import { EditSetsAndReps } from "../numberField/NumberField.jsx";
 import MultiDaySelector from "../days/DaySelector.jsx";
 
-const EditExerciseCard = ({ sx = {},id,plan }) => {
+const EditExerciseCard = ({ sx = {},id,plan}) => {
   return (
     <Card
       sx={{
