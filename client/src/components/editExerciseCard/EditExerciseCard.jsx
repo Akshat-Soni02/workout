@@ -24,7 +24,6 @@ const EditExerciseCard = ({ sx = {},id,plan}) => {
         <Title sx={{ textAlign: "center", fontWeight: "bold", fontSize: "22px" }}>
           {"Exercise " + id}
         </Title>
-
         <EditSetsAndReps label="Total Sets" initialValue={plan.sets}/>
         <EditSetsAndReps label="Total Reps" initialValue={plan.reps}/>
 

@@ -9,6 +9,7 @@ import DaySelector from './components/days/DaySelector.jsx'
 import EditExercisesPage from './pages/editExercisesPage/EditExercisesPage.jsx';
 
 
+
 function App() {
   return (
     <div className="App">

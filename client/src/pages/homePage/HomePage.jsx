@@ -9,8 +9,10 @@ import "./style.css"
 
 
 const HomePage = () => {
-    const weeklyData = [50, 55, 53, 60, 58, 62, 65];
-    const monthlyData = [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310];
+    // const weeklyData = [50, 55, 53, 60, 58, 62, 65];
+    // const monthlyData = [200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310];
+    const temp = ['item1','item2','item3','item4'];
+
 
 
     return (
