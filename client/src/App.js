@@ -6,7 +6,7 @@ import LoginPage from './pages/auth/loginPage/LoginPage.jsx';
 import WorkoutPage from './pages/workoutPlans/WorkoutPlans.jsx';
 import TodayWorkoutPlans from './pages/todayWorkoutPlans/TodayWorkoutPlans.jsx'
 import DaySelector from './components/days/DaySelector.jsx'
-import EditExerciseCard from './components/editExerciseCard/EditExerciseCard.jsx'
+import EditExercisesPage from './pages/editExercisesPage/EditExercisesPage.jsx';
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Route path="/register" element={<SignupPage/>} />
           <Route path="/workoutplans" element= {<WorkoutPage />} />
           <Route path="/todayworkoutplans" element= {<TodayWorkoutPlans />} />
-          <Route path="/editexercise" element= {<EditExerciseCard />} />
+          <Route path="/editexercise" element= {<EditExercisesPage />} />
         </Routes>
       </Router>
     </div>
