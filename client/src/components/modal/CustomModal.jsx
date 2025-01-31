@@ -2,15 +2,11 @@ import React from "react";
 import { Modal, Box, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const CustomModal = ({
-  children,
-  open,
-  onClose,
-}) => {
+const CustomModal = ({ children, open, onClose }) => {
   return (
     <Modal
       open={open}
-      onClose={() => {}}
+      onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -24,9 +20,12 @@ const CustomModal = ({
           borderRadius: "12px",
           boxShadow: 24,
           p: 3,
-          minWidth: "300px",
+          maxWidth: "90vw",
+          maxHeight: "90vh",
+          display: "flex",
+          flexDirection: "column",
+          overflow: "auto",
           outline: "none",
-          position: "relative",
         }}
       >
         {/* Close Button */}

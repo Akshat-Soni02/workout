@@ -10,6 +10,11 @@ import TricepsExercise from './pages/exercises/tricepsexercise/TricepsExercise.j
 import LegsWorkout from './pages/exercises/legsworkout/LegsWorkout.jsx';
 import ShoulderExercise from './pages/exercises/shoulderexercsie/ShoulderExercise.jsx';
 import CoreWorkout from './pages/exercises/coreworkout/CoreWorkout.jsx';
+import WorkoutPage from './pages/workoutPlans/WorkoutPlans.jsx';
+import TodayWorkoutPlans from './pages/todayWorkoutPlans/TodayWorkoutPlans.jsx'
+import DaySelector from './components/days/DaySelector.jsx'
+import EditExercisesPage from './pages/editExercisesPage/EditExercisesPage.jsx';
+
 
 function App() {
   return (
@@ -26,6 +31,9 @@ function App() {
           <Route path="/exercises/legsworkout/LegsWorkout" element={<LegsWorkout/>}/>
           <Route path="/exercises/shoulderexercise/ShoulderExercise" element={<ShoulderExercise/>}/>
           <Route path="/exercises/coreworkout/CoreWorkout" element={<CoreWorkout/>}/>
+          <Route path="/workoutplans" element= {<WorkoutPage />} />
+          <Route path="/todayworkoutplans" element= {<TodayWorkoutPlans />} />
+          <Route path="/editexercise" element= {<EditExercisesPage />} />
         </Routes>
       </Router>
     </div>

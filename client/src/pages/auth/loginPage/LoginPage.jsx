@@ -4,6 +4,7 @@ import CustomInput from "../../../components/customInput/CustomInput.jsx";
 import CustomButton from "../../../components/button/CustomButton.jsx";
 import { Heading, Title, LightText } from "../../../components/customTypo/CustomTypo.jsx";
 import CustomModal from "../../../components/modal/CustomModal.jsx";
+import RecordLogParent from "../../../components/recordLog/RecordLogParent.jsx";
 import "./style.css"
 
 const LoginPage = () => {
@@ -26,7 +27,7 @@ const LoginPage = () => {
       <CustomModal
       open={open}
       onClose={() => setOpen(false)}
-      >Hey there</CustomModal>
+      ><RecordLogParent/></CustomModal>
       <form onSubmit={handleSubmit(onSubmit)} className="signupForm loginForm">
         <Heading>Hi, Welcome Back!</Heading>
         <CustomInput
