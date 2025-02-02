@@ -4,13 +4,15 @@ import { Heading } from "../../components/customTypo/CustomTypo.jsx";
 import "../workoutPlans/WorkoutPlans.css";
 import CustomButton from "../../components/button/CustomButton.jsx";
 import EditExerciseModal from "../../components/editExerciseModal/EditExerciseModal.jsx";
+import CustomHeader from "../../components/header/CustomHeader.jsx";
+import CustomFooter from "../../components/footer/CustomFooter.jsx";
 
 const EditExercisesPage = () => {
     const [plans, setPlans] = useState([
-        { sets: 3, reps: 4, selectedDays: ["Mon", "Fri", "Tue"] },
-        { sets: 2, reps: 4, selectedDays: ["Mon", "Wed", "Fri"] },
-        { sets: 3, reps: 2, selectedDays: ["Mon", "Tue", "Sat"] },
-        { sets: 3, reps: 4, selectedDays: ["Wed", "Sat", "Sun"] }
+        { name : "Cheast", sets: 3, reps: 4, selectedDays: ["Mon", "Fri", "Tue"] },
+        { name : "Cheast", sets: 2, reps: 4, selectedDays: ["Mon", "Wed", "Fri"] },
+        { name : "Cheast", sets: 3, reps: 2, selectedDays: ["Mon", "Tue", "Sat"] },
+        { name : "Cheast", sets: 3, reps: 4, selectedDays: ["Wed", "Sat", "Sun"] }
     ]);
     const [showModal, setShowModal] = useState(false);
 
@@ -23,6 +25,8 @@ const EditExercisesPage = () => {
     };
 
     return (
+        <>
+        <CustomHeader />
         <div className="workoutpage">
             <Heading>{"Edit Exercises "}</Heading>
             <div className="workoutplans">
@@ -30,7 +34,6 @@ const EditExercisesPage = () => {
                     <EditExerciseCard
                         key={index}
                         plan={plan}
-                        id={index + 1}
                         onUpdate={(updatedPlan) => updatePlan(index, updatedPlan)}
                     />
                 ))}
@@ -43,6 +46,8 @@ const EditExercisesPage = () => {
                 <EditExerciseModal setShowModal={setShowModal} onAddExercise={addExercise} />
             )}
         </div>
+        <CustomFooter />
+        </>
     );
 };
 

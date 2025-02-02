@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./MultiDaySelector.css"; // Import the CSS file
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -14,15 +15,11 @@ const MultiDaySelector = ({ selectedDays = [], onSelectionChange }) => {
     };
 
     return (
-        <div style={styles.container}>
+        <div className="multi-day-container">
             {daysOfWeek.map((day) => (
                 <div
                     key={day}
-                    style={{
-                        ...styles.dayBox,
-                        backgroundColor: selected.includes(day) ? "#007bff" : "#f0f0f0",
-                        color: selected.includes(day) ? "#fff" : "#000",
-                    }}
+                    className={`day-box ${selected.includes(day) ? "selected" : ""}`}
                     onClick={() => toggleDay(day)}
                 >
                     {day}
@@ -30,11 +27,6 @@ const MultiDaySelector = ({ selectedDays = [], onSelectionChange }) => {
             ))}
         </div>
     );
-};
-
-const styles = {
-    container: { display: "flex", gap: "10px", justifyContent: "center", margin: "20px" },
-    dayBox: { padding: "10px 15px", borderRadius: "6px", cursor: "pointer", fontSize: "16px", fontWeight: "bold", border: "1px solid #ccc", transition: "0.3s", userSelect: "none" }
 };
 
 export default MultiDaySelector;

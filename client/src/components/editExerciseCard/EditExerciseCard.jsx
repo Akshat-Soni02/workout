@@ -30,14 +30,14 @@ const EditExerciseCard = ({ sx = {}, id, plan, onUpdate }) => {
                 borderRadius: "12px",
                 boxShadow: "0 4px 4px rgba(0, 0, 0, 0.36)",
                 width: "40vw",
-                height: "25vh",
+                height: "220px",
                 margin: "20px",
                 ...sx,
             }}
         >
             <CardContent>
                 <Title sx={{ textAlign: "center", fontWeight: "bold", fontSize: "22px" }}>
-                    {"Exercise " + id}
+                    {plan.name}
                 </Title>
                 <EditSetsAndReps label="Total Sets" initialValue={plan.sets} onChange={handleSetsChange} />
                 <EditSetsAndReps label="Total Reps" initialValue={plan.reps} onChange={handleRepsChange} />

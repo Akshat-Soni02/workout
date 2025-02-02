@@ -8,7 +8,7 @@ const WorkoutModal = ({ workoutName, setWorkoutName, handleAddPlan, setShowModal
 
     const handleSave = () => {
         handleAddPlan();
-        navigate("/editexercise");
+        //navigate("/editexercise");
     };
 
     return (

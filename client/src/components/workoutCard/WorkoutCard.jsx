@@ -8,7 +8,7 @@ const WorkoutCard = ({
   sx = {},
   exercises,
   btnText,
-  id,
+  name,
 }) => {
   return (
     <Card
@@ -17,14 +17,14 @@ const WorkoutCard = ({
         borderRadius: "12px",
         boxShadow: "0 4px 4px rgba(0, 0, 0, 0.36)",
         width: "40vw",
-        height: "25vh",
+        height: "245px",
         margin: "20px",
         ...sx
       }}
     >
       <CardContent>
         <Title sx={{ textAlign: "center", fontWeight: "bold", fontSize: "22px" }}>
-          {"Workout plan " + id}
+          {name}
         </Title>
 
 
