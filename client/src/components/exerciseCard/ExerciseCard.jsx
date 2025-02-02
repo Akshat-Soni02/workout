@@ -8,7 +8,6 @@ const ExerciseCard = ({
   sx = {},
   setsAndReps,
   btnText,
-  id
 }) => {
   return (
     <Card
@@ -17,14 +16,14 @@ const ExerciseCard = ({
         borderRadius: "12px",
         boxShadow: "0 4px 4px rgba(0, 0, 0, 0.36)",
         width: "40vw",
-        height: "20vh",
+        height: "190px",
         margin: "20px",
         ...sx
       }}
     >
       <CardContent>
         <Title sx={{ textAlign: "center", fontWeight: "bold", fontSize: "22px" }}>
-          {"Exercise " + id}
+          {setsAndReps.name}
         </Title>
 
         <div style={{paddingLeft : "20px",paddingBottom: "5px"}}>
