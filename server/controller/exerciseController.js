@@ -2,7 +2,7 @@ import exercise from "../models/exercise.js";
 
 export const getAllExercises = async (req, res) => {
   try {
-    const { workoutId } = req.query;
+    const { workoutId } = req.params;
     const exercises = await exercise.find({ workoutId });
     res.status(201).json({
       success: true,
@@ -39,9 +39,10 @@ export const getAllExercises = async (req, res) => {
 
 export const createNewExercise = async (req, res) => {
   try {
-    const { title, workoutId } = req.body;
+    const { title, workoutId, days } = req.body;
     const newExercise = new exercise({
       title,
+      days,
       workoutId,
     });
     await newExercise.save();
@@ -69,6 +70,9 @@ export const updateExerciseById = async (req, res) => {
     const currentExercise = await exercise.findById(id);
     if (updatedDetails.title) {
       currentExercise.title = updatedDetails.title;
+    }
+    if (updatedDetails.days) {
+      currentExercise.days = updatedDetails.days;
     }
     await currentExercise.save();
     const exercises = await exercise.find();

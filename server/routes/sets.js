@@ -8,7 +8,7 @@ import {
 } from "../controller/setController.js";
 
 const router = express.Router();
-router.get("", isAuthenticated, getAllSets);
+router.get("/exerciseId", isAuthenticated, getAllSets);
 router.post("/", isAuthenticated, createNewSet);
 router.put("/:id", isAuthenticated, updateSetById);
 router.delete("/:id", isAuthenticated, deleteSetById);

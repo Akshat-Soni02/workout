@@ -3,9 +3,12 @@ import { useForm } from "react-hook-form";
 import CustomInput from "../../../components/customInput/CustomInput.jsx";
 import CustomButton from "../../../components/button/CustomButton.jsx";
 import { Heading, Title, LightText } from "../../../components/customTypo/CustomTypo.jsx";
+import {useRegisterUserMutation} from "../../../store/UserApi.jsx"
 import "./style.css"
 
 const SignupPage = () => {
+
+  const [registerUser, {isLoading}] = useRegisterUserMutation();
 
   const {
     control,
@@ -13,8 +16,13 @@ const SignupPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      await registerUser(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

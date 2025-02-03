@@ -2,7 +2,7 @@ import set from "../models/set.js";
 
 export const getAllSets = async (req, res) => {
   try {
-    const { exerciseId } = req.query;
+    const { exerciseId } = req.params;
     const sets = await set.find({ exerciseId });
     res.status(201).json({
       success: true,
