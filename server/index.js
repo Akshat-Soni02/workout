@@ -1,6 +1,5 @@
 import express from "express";
 import userRouter from "./routes/user.js";
-import tasksRouter from "./routes/tasks.js";
 import exerciseRouter from "./routes/exercises.js";
 import workoutRouter from "./routes/workout.js";
 import setRouter from "./routes/sets.js";
@@ -38,7 +37,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/v1/user", userRouter);
-app.use("/api/v1/tasks", tasksRouter);
+// app.use("/api/v1/tasks", tasksRouter);
 app.use("/api/v1/exercises", exerciseRouter);
 app.use("/api/v1/workouts", workoutRouter);
 app.use("/api/v1/sets", setRouter);

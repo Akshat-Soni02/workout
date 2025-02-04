@@ -5,10 +5,12 @@ import {
   createNewSet,
   updateSetById,
   deleteSetById,
+  getAllTodaySets,
 } from "../controller/setController.js";
 
 const router = express.Router();
-router.get("", isAuthenticated, getAllSets);
+router.get("/:exerciseId", isAuthenticated, getAllSets);
+router.get("/:exerciseId/today", isAuthenticated, getAllTodaySets);
 router.post("/", isAuthenticated, createNewSet);
 router.put("/:id", isAuthenticated, updateSetById);
 router.delete("/:id", isAuthenticated, deleteSetById);

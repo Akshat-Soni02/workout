@@ -2,7 +2,7 @@ import set from "../models/set.js";
 
 export const getAllSets = async (req, res) => {
   try {
-    const { exerciseId } = req.query;
+    const { exerciseId } = req.params;
     const sets = await set.find({ exerciseId });
     res.status(201).json({
       success: true,
@@ -13,6 +13,29 @@ export const getAllSets = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Error fetching sets",
+      error: err.message,
+    });
+  }
+};
+
+export const getAllTodaySets = async (req, res) => {
+  try {
+    const { exerciseId } = req.params;
+    const today = new Date().toISOString().split("T")[0];
+
+    const sets = await set.find({
+      exerciseId,
+      createdAt: { $gte: new Date(today) },
+    });
+    res.status(201).json({
+      success: true,
+      sets,
+    });
+  } catch (err) {
+    console.log("Error fetching today sets:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching today sets",
       error: err.message,
     });
   }
@@ -40,6 +63,7 @@ export const getAllSets = async (req, res) => {
 export const createNewSet = async (req, res) => {
   try {
     const setObj = req.body;
+    console.log(setObj);
     const newSet = new set(setObj);
     await newSet.save();
     const exerciseId = setObj.exerciseId;

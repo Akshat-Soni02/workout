@@ -6,7 +6,7 @@ const setSchema = new mongoose.Schema({
   distance: { type: Number },
   duration: { type: Number },
   exerciseId: { type: mongoose.Types.ObjectId, required: true },
-});
+}, {timestamps: true});
 
 const set = mongoose.model("set", setSchema);
 export default set;

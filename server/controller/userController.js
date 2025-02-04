@@ -19,18 +19,20 @@ export const login = async (req, res, next) => {
 
 export const register = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
+    console.log(username, email, password);
+    const name = username;
     let curUser = await user.findOne({ email });
     if (curUser) return next(new ErrorHandler("User Already Exist", 404));
 
     const hashedPassword = await bcrypt.hash(password, 10);
     curUser = await user.create({
       name,
-      email,
+      email,    
       password: hashedPassword,
     });
 
-    sendCookie(curUser, res, "Welcome to Work", 201);
+    sendCookie(curUser, res, "Welcome to Workout", 201);
   } catch (error) {
     next(error);
   }
