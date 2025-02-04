@@ -6,6 +6,7 @@ const exerciseSchema = new mongoose.Schema({
   idealSets: {type: Number, default: 0},
   idealReps: {type: Number, default: 0},
   workoutId: { type: mongoose.Types.ObjectId, required: true },
+  userId: {type: mongoose.Types.ObjectId, required: true}
 });
 
 const exercise = mongoose.model("exercise", exerciseSchema);

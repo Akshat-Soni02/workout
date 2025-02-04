@@ -6,6 +6,9 @@ export const SetApi = api.injectEndpoints({
       query: (exerciseId) => `/sets/${exerciseId}`,
       providesTags: ['Set'],
     }),
+    getTodaysSets: builder.query({
+      query: (exerciseId) => `/sets/${exerciseId}/today`,
+    }),
     createSet: builder.mutation({
       query: ({ body }) => ({
         url: `/sets/`,

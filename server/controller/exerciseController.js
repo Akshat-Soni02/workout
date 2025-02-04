@@ -18,6 +18,31 @@ export const getAllExercises = async (req, res) => {
   }
 };
 
+export const getAllExercisesOfTheDay = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const today = new Date().toLocaleString("en-US", { weekday: "short" });
+    const exercises = await exercise.find({
+      userId,
+      days: { $in: [today] },
+    });
+    console.log(today);
+    console.log(exercises);
+    
+    res.status(201).json({
+      success: true,
+      exercises,
+    });
+  } catch (err) {
+    console.log("Error fetching all exercises of today:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching exercises of today",
+      error: err.message,
+    });
+  }
+};
+
 // export const getExerciseById = async (req, res) => {
 //   try {
 //     const { id } = req.params;
@@ -40,6 +65,7 @@ export const getAllExercises = async (req, res) => {
 export const createNewExercise = async (req, res) => {
   try {
     const data = req.body;
+    const userId = req.user._id;
     console.log(data);
     // {
     //   title,
@@ -48,7 +74,7 @@ export const createNewExercise = async (req, res) => {
     //   idealReps,
     //   idealSets
     // }
-    const newExercise = new exercise(data);
+    const newExercise = new exercise({...data, userId});
     await newExercise.save();
     const workoutId = data.workoutId;
     const exercises = await exercise.find({workoutId});

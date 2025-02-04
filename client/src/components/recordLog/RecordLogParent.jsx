@@ -5,7 +5,7 @@ import { IoIosAdd, IoIosClose } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import "./style.css";
 
-const RecordLogParent = () => {
+const RecordLogParent = ({exerciseId}) => {
     const [sets, setSets] = useState([{ id: 1, submitted: false, collapsed: false }]);
 
     // Handle set submission

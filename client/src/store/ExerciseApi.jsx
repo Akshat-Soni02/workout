@@ -6,6 +6,9 @@ export const ExerciseApi = api.injectEndpoints({
       query: (workoutId) => `/exercises/${workoutId}`,
       providesTags: ['Exercise'],
     }),
+    getTodaysExercises: builder.query({
+      query: () => `/exercises/today`,
+    }),
     createExercise: builder.mutation({
       query: (body) => ({
         url: `/exercises/`,
@@ -37,4 +40,6 @@ export const {
   useCreateExerciseMutation,
   useUpdateExerciseMutation,
   useDeleteExerciseMutation,
+  useLazyGetExercisesQuery,
+  useGetTodaysExercisesQuery
 } = ExerciseApi;

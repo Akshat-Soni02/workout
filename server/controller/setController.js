@@ -18,6 +18,27 @@ export const getAllSets = async (req, res) => {
   }
 };
 
+export const getAllTodaySets = async (req, res) => {
+  try {
+    const { exerciseId } = req.params;
+    const today = new Date().toISOString().split("T")[0];
+
+
+    const sets = await set.find({ exerciseId, createdAt: { $gte: new Date(today) } });
+    res.status(201).json({
+      success: true,
+      sets,
+    });
+  } catch (err) {
+    console.log("Error fetching today sets:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error fetching today sets",
+      error: err.message,
+    });
+  }
+};
+
 // export const getExerciseById = async (req, res) => {
 //   try {
 //     const { id } = req.params;

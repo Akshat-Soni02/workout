@@ -20,10 +20,6 @@ const HomePage = () => {
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading user</p>;
 
-    const show = () => {
-        console.log(response);
-    }
-
 
     return (
         <>
@@ -34,8 +30,6 @@ const HomePage = () => {
                 {/* <CustomInput id={"aaa"} label={"aaa"}/> */}
                 {/* <ShadowCard/> */}
                 <RecordLogParent/>
-                <div onClick={() => show()}>adfadf</div>
-
             </div>
         </>
     );
