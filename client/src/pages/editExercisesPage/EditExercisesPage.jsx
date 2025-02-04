@@ -6,6 +6,8 @@ import CustomButton from "../../components/button/CustomButton.jsx";
 import EditExerciseModal from "../../components/editExerciseModal/EditExerciseModal.jsx";
 import CustomHeader from "../../components/header/CustomHeader.jsx";
 import CustomFooter from "../../components/footer/CustomFooter.jsx";
+import {useGetExercisesQuery, useCreateExerciseMutation} from "../../store/ExerciseApi.jsx";
+import { useSelector } from "react-redux";
 
 const EditExercisesPage = () => {
     const [plans, setPlans] = useState([
@@ -15,6 +17,17 @@ const EditExercisesPage = () => {
         { name : "Cheast", sets: 3, reps: 4, selectedDays: ["Wed", "Sat", "Sun"] }
     ]);
     const [showModal, setShowModal] = useState(false);
+    const workoutId = useSelector((state) => state.feature.workoutId);
+    const { data, isLoading, error } = useGetExercisesQuery(workoutId, {
+        skip: !workoutId,
+    });
+
+    const [createExercise, {isLoading: loading}] = useCreateExerciseMutation();
+
+    console.log("API Data:", data);
+    console.log("Workout ID:", workoutId);
+
+
 
     const updatePlan = (index, updatedPlan) => {
         setPlans((prevPlans) => prevPlans.map((plan, i) => (i === index ? updatedPlan : plan)));
@@ -24,16 +37,20 @@ const EditExercisesPage = () => {
         setPlans([...plans, newExercise]);
     };
 
+    if(isLoading || loading) return <div>loading...</div>
+    if (!data?.exercises) return <div>No exercises found.</div>;
+
     return (
         <>
         <CustomHeader />
         <div className="workoutpage">
             <Heading>{"Edit Exercises "}</Heading>
             <div className="workoutplans">
-                {plans.map((plan, index) => (
+                {data?.exercises?.map((exercise, index) => (
                     <EditExerciseCard
+                        id = {exercise._id}
                         key={index}
-                        plan={plan}
+                        plan={exercise}
                         onUpdate={(updatedPlan) => updatePlan(index, updatedPlan)}
                     />
                 ))}
@@ -43,7 +60,7 @@ const EditExercisesPage = () => {
             </CustomButton>
 
             {showModal && (
-                <EditExerciseModal setShowModal={setShowModal} onAddExercise={addExercise} />
+                <EditExerciseModal setShowModal={setShowModal} onAddExercise={addExercise} workoutId = {workoutId}/>
             )}
         </div>
         <CustomFooter />

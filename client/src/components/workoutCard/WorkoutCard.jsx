@@ -1,15 +1,10 @@
 import React from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { Heading, Title, LightText, ExerciseText } from "../customTypo/CustomTypo.jsx";
+import { Title } from "../customTypo/CustomTypo.jsx";
 import CustomButton from "../button/CustomButton.jsx";
 
-const WorkoutCard = ({
-  sx = {},
-  exercises,
-  btnText,
-  name,
-}) => {
+const WorkoutCard = ({ sx = {}, description, btnText, name }) => {
   return (
     <Card
       sx={{
@@ -27,19 +22,15 @@ const WorkoutCard = ({
           {name}
         </Title>
 
-
         <div
           style={{
             maxHeight: "130px",
             overflowY: "auto",
-            scrollbarWidth: "thin", // Firefox
-            scrollbarColor: "rgb(210, 220, 240) #E5EEFF", // Thumb color & track color (Firefox)
+            scrollbarWidth: "thin",
+            scrollbarColor: "rgb(210, 220, 240) #E5EEFF",
           }}
         >
-          {Array.isArray(exercises) &&
-            exercises.map((exercise, index) => (
-              <ExerciseText key={index}>{exercise}</ExerciseText>
-            ))}
+          {description && <div>{description}</div>}
         </div>
 
         {btnText && (
@@ -48,9 +39,8 @@ const WorkoutCard = ({
           </div>
         )}
       </CardContent>
-
     </Card>
   );
-}
+};
 
 export default WorkoutCard;

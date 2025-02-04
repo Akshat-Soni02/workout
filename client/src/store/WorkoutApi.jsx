@@ -3,7 +3,7 @@ import { api } from './api';
 export const WorkoutApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getWorkouts: builder.query({
-      query: (userId) => `/workouts/${userId}`,
+      query: () => `/workouts/`,
       providesTags: ['Workout'],
     }),
     createWorkout: builder.mutation({

@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
 import { set, useForm } from "react-hook-form";
 import CustomInput from "../../../components/customInput/CustomInput.jsx";
 import CustomButton from "../../../components/button/CustomButton.jsx";
 import { Heading, Title, LightText } from "../../../components/customTypo/CustomTypo.jsx";
 import CustomModal from "../../../components/modal/CustomModal.jsx";
 import RecordLogParent from "../../../components/recordLog/RecordLogParent.jsx";
+import {useGetUserQuery, useLoginUserMutation} from "../../../store/UserApi.jsx"
 import "./style.css"
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-
-  const openModal = () => setOpen(true);
+  const {data: response, isLoading, error} = useGetUserQuery();
+  const [loginUser, {isLoading: loading}] = useLoginUserMutation();
 
   const {
     control,
@@ -18,8 +21,26 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if(response) navigate("/");
+  },[response])
+  
+  if (isLoading || loading) return <p>Loading...</p>;
+  if (error) {
+    console.log("Error loading user");
+  }
+
+  const openModal = () => setOpen(true);
+
+
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+      await loginUser(data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

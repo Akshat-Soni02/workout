@@ -2,14 +2,30 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../components/button/CustomButton.jsx";
 import '../../pages/workoutPlans/WorkoutPlans.css';
+import {useCreateWorkoutMutation} from "../../store/WorkoutApi.jsx"
+import { useDispatch, useSelector } from "react-redux";
+import { setWorkoutId } from "../../feature/FeatureSlice.jsx";
 
 const WorkoutModal = ({ workoutName, setWorkoutName, handleAddPlan, setShowModal }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [createWorkout, {isLoading, data}] = useCreateWorkoutMutation();
 
-    const handleSave = () => {
-        handleAddPlan();
-        //navigate("/editexercise");
-    };
+    const handleSave = async () => {
+        try {
+            const response = await createWorkout({title: workoutName}).unwrap();
+            dispatch(setWorkoutId(response.workout._id));
+            console.log("New Workout ID:", response.workout._id);
+
+            setTimeout(() => {
+                navigate("/editexercise");
+            }, 100);
+        } catch (error) {
+            alert("Error creating new workout");
+        }
+    }
+
+    if(isLoading) return <div>Loading...</div>
 
     return (
         <div className="modal-overlay">

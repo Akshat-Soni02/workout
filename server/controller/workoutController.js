@@ -2,7 +2,7 @@ import workout from "../models/workout.js";
 
 export const getAllWorkouts = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const userId = req.user._id;
     const workouts = await workout.find({ userId });
     res.status(201).json({
       success: true,

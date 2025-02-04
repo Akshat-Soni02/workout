@@ -39,14 +39,19 @@ export const getAllExercises = async (req, res) => {
 
 export const createNewExercise = async (req, res) => {
   try {
-    const { title, workoutId, days } = req.body;
-    const newExercise = new exercise({
-      title,
-      days,
-      workoutId,
-    });
+    const data = req.body;
+    console.log(data);
+    // {
+    //   title,
+    //   days,
+    //   workoutId,
+    //   idealReps,
+    //   idealSets
+    // }
+    const newExercise = new exercise(data);
     await newExercise.save();
-    const exercises = await exercise.find({ workoutId });
+    const workoutId = data.workoutId;
+    const exercises = await exercise.find({workoutId});
 
     res.status(201).json({
       success: true,
@@ -67,12 +72,20 @@ export const updateExerciseById = async (req, res) => {
   try {
     const { id } = req.params;
     const updatedDetails = req.body;
+    console.log(updatedDetails);
+    console.log(id);
     const currentExercise = await exercise.findById(id);
     if (updatedDetails.title) {
       currentExercise.title = updatedDetails.title;
     }
     if (updatedDetails.days) {
       currentExercise.days = updatedDetails.days;
+    }
+    if(updatedDetails.idealReps) {
+      currentExercise.idealReps = updatedDetails.idealReps;
+    }
+    if(updatedDetails.idealSets) {
+      currentExercise.idealSets = updatedDetails.idealSets;
     }
     await currentExercise.save();
     const exercises = await exercise.find();

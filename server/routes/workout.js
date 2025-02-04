@@ -8,7 +8,7 @@ import {
 import { isAuthenticated } from "../middlewares/auth.js";
 
 const router = express.Router();
-router.get("/:userId", isAuthenticated, getAllWorkouts);
+router.get("/", isAuthenticated, getAllWorkouts);
 router.post("/", isAuthenticated, createNewWorkout);
 router.put("/:id", isAuthenticated, updateWorkoutById);
 router.delete("/:id", isAuthenticated, deleteWorkoutById);

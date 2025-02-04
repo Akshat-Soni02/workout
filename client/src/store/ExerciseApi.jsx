@@ -7,7 +7,7 @@ export const ExerciseApi = api.injectEndpoints({
       providesTags: ['Exercise'],
     }),
     createExercise: builder.mutation({
-      query: ({ body }) => ({
+      query: (body) => ({
         url: `/exercises/`,
         method: 'POST',
         body,
