@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { set, useForm } from "react-hook-form";
 import CustomInput from "../../../components/customInput/CustomInput.jsx";
 import CustomButton from "../../../components/button/CustomButton.jsx";
-import { Heading, Title, LightText } from "../../../components/customTypo/CustomTypo.jsx";
+import {
+  Heading,
+  Title,
+  LightText,
+} from "../../../components/customTypo/CustomTypo.jsx";
 import CustomModal from "../../../components/modal/CustomModal.jsx";
 import RecordLogParent from "../../../components/recordLog/RecordLogParent.jsx";
-import {useGetUserQuery, useLoginUserMutation} from "../../../store/UserApi.jsx"
-import "./style.css"
+import {
+  useGetUserQuery,
+  useLoginUserMutation,
+} from "../../../store/UserApi.jsx";
+import "./style.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const {data: response, isLoading, error} = useGetUserQuery();
-  const [loginUser, {isLoading: loading}] = useLoginUserMutation();
+  const { data: response, isLoading, error } = useGetUserQuery();
+  const [loginUser, { isLoading: loading }] = useLoginUserMutation();
 
   const {
     control,
@@ -22,16 +28,13 @@ const LoginPage = () => {
   } = useForm();
 
   useEffect(() => {
-    if(response) navigate("/");
-  },[response])
-  
+    if (response) navigate("/");
+  }, [response]);
+
   if (isLoading || loading) return <p>Loading...</p>;
   if (error) {
     console.log("Error loading user");
   }
-
-  const openModal = () => setOpen(true);
-
 
   const onSubmit = async (data) => {
     try {
@@ -45,10 +48,6 @@ const LoginPage = () => {
 
   return (
     <div className="signupPage">
-      <CustomModal
-      open={open}
-      onClose={() => setOpen(false)}
-      ><RecordLogParent/></CustomModal>
       <form onSubmit={handleSubmit(onSubmit)} className="signupForm loginForm">
         <Heading>Hi, Welcome Back!</Heading>
         <CustomInput
@@ -64,7 +63,7 @@ const LoginPage = () => {
           label="Email"
           type="email"
           sx={{
-            width: "350px"
+            width: "350px",
           }}
         />
 
@@ -81,24 +80,25 @@ const LoginPage = () => {
           label="Password"
           type="password"
           sx={{
-            width: "350px"
+            width: "350px",
           }}
         />
 
         <CustomButton
-        type="submit"
-        sx={{
+          type="submit"
+          sx={{
             width: "250px",
-            fontSize: "1.2rem"
-        }}
-        onClick={openModal}
+            fontSize: "1.2rem",
+          }}
         >
-        Submit
+          Submit
         </CustomButton>
-        <LightText>Don't have an account? <span className="logRed">Sign up</span></LightText>
+        <LightText>
+          Don't have an account? <span className="logRed">Sign up</span>
+        </LightText>
       </form>
     </div>
   );
-}
+};
 
 export default LoginPage;

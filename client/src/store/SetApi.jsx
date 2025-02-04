@@ -1,36 +1,36 @@
-import { api } from './api';
+import { api } from "./api";
 
 export const SetApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getSets: builder.query({
       query: (exerciseId) => `/sets/${exerciseId}`,
-      providesTags: ['Set'],
+      providesTags: ["Set"],
     }),
     getTodaysSets: builder.query({
       query: (exerciseId) => `/sets/${exerciseId}/today`,
     }),
     createSet: builder.mutation({
-      query: ({ body }) => ({
+      query: (body) => ({
         url: `/sets/`,
-        method: 'POST',
+        method: "POST",
         body,
       }),
-      invalidatesTags: ['Set'],
+      invalidatesTags: ["Set"],
     }),
     updateSet: builder.mutation({
       query: ({ id, body }) => ({
         url: `/sets/${id}`,
-        method: 'PUT',
+        method: "PUT",
         body,
       }),
-      invalidatesTags: ['Set'],
+      invalidatesTags: ["Set"],
     }),
     deleteSet: builder.mutation({
       query: (id) => ({
         url: `/sets/${id}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
-      invalidatesTags: ['Set'],
+      invalidatesTags: ["Set"],
     }),
   }),
 });
@@ -40,5 +40,5 @@ export const {
   useCreateSetMutation,
   useUpdateSetMutation,
   useDeleteSetMutation,
-  useGetTodaysSetsQuery
+  useGetTodaysSetsQuery,
 } = SetApi;

@@ -23,8 +23,10 @@ export const getAllTodaySets = async (req, res) => {
     const { exerciseId } = req.params;
     const today = new Date().toISOString().split("T")[0];
 
-
-    const sets = await set.find({ exerciseId, createdAt: { $gte: new Date(today) } });
+    const sets = await set.find({
+      exerciseId,
+      createdAt: { $gte: new Date(today) },
+    });
     res.status(201).json({
       success: true,
       sets,
@@ -61,6 +63,7 @@ export const getAllTodaySets = async (req, res) => {
 export const createNewSet = async (req, res) => {
   try {
     const setObj = req.body;
+    console.log(setObj);
     const newSet = new set(setObj);
     await newSet.save();
     const exerciseId = setObj.exerciseId;

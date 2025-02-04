@@ -4,12 +4,29 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import "@fontsource/poppins";
+import { useNavigate } from "react-router-dom";
+import { useLazyLogoutUserQuery } from "../../store/UserApi";
 
 import logo from "../../assets/logo.png";
 import CustomButton from "../button/CustomButton";
 import "./style.css";
 
 const CustomHeader = () => {
+  const navigate = useNavigate();
+  const [logoutUser, { isLoading }] = useLazyLogoutUserQuery();
+
+  const navigateToPage = (dest) => {
+    if (dest === "Home") navigate("/");
+    if (dest === "Workouts") navigate("/workoutplans");
+  };
+
+  const handleLogout = async () => {
+    await logoutUser();
+    navigate("/login");
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+
   return (
     <AppBar
       position="static"
@@ -25,7 +42,12 @@ const CustomHeader = () => {
           justifyContent: "space-between",
         }}
       >
-        <img src={logo} alt="workout" className="logo" />
+        <img
+          src={logo}
+          alt="workout"
+          className="logo"
+          onClick={() => navigate("/")}
+        />
 
         <div className="navTabs">
           {["Home", "Workouts", "My Activity"].map((tab) => (
@@ -47,6 +69,7 @@ const CustomHeader = () => {
                   transform: "scale(0.98)",
                 },
               }}
+              onClick={() => navigateToPage(tab)}
             >
               <Typography variant="h6">{tab}</Typography>
             </ButtonBase>
@@ -58,6 +81,7 @@ const CustomHeader = () => {
             backgroundColor: "#2378e0",
             width: "100px",
           }}
+          onClick={() => handleLogout()}
         >
           Logout
         </CustomButton>

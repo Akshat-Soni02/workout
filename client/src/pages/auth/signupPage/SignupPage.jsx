@@ -2,13 +2,18 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import CustomInput from "../../../components/customInput/CustomInput.jsx";
 import CustomButton from "../../../components/button/CustomButton.jsx";
-import { Heading, Title, LightText } from "../../../components/customTypo/CustomTypo.jsx";
-import {useRegisterUserMutation} from "../../../store/UserApi.jsx"
-import "./style.css"
+import {
+  Heading,
+  Title,
+  LightText,
+} from "../../../components/customTypo/CustomTypo.jsx";
+import { useRegisterUserMutation } from "../../../store/UserApi.jsx";
+import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
-
-  const [registerUser, {isLoading}] = useRegisterUserMutation();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const navigate = useNavigate();
 
   const {
     control,
@@ -20,6 +25,7 @@ const SignupPage = () => {
     try {
       console.log(data);
       await registerUser(data);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -38,10 +44,9 @@ const SignupPage = () => {
           label="Username"
           type="username"
           sx={{
-            width: "350px"
+            width: "350px",
           }}
         />
-
 
         <CustomInput
           name="email"
@@ -56,7 +61,7 @@ const SignupPage = () => {
           label="Email"
           type="email"
           sx={{
-            width: "350px"
+            width: "350px",
           }}
         />
 
@@ -73,23 +78,25 @@ const SignupPage = () => {
           label="Password"
           type="password"
           sx={{
-            width: "350px"
+            width: "350px",
           }}
         />
 
         <CustomButton
-        type="submit"
-        sx={{
+          type="submit"
+          sx={{
             width: "250px",
-            fontSize: "1.2rem"
-        }}
+            fontSize: "1.2rem",
+          }}
         >
-        Submit
+          Submit
         </CustomButton>
-        <LightText>Already have an account? <span className="logRed">Log in</span></LightText>
+        <LightText>
+          Already have an account? <span className="logRed">Log in</span>
+        </LightText>
       </form>
     </div>
   );
-}
+};
 
 export default SignupPage;
