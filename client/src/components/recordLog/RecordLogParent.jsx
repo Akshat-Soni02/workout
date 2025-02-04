@@ -1,52 +1,71 @@
 import React, { useState } from "react";
 import RecordSet from "../recordSet/RecordSet";
 import { Heading, LightText } from "../customTypo/CustomTypo";
-import { IoIosAdd, IoIosClose } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosAdd, IoIosClose, IoIosArrowDown } from "react-icons/io";
+import { useCreateSetMutation, useUpdateSetMutation, useDeleteSetMutation, useGetTodaysSetsQuery} from "../../store/SetApi.jsx";
 import "./style.css";
 
-const RecordLogParent = ({exerciseId}) => {
-    const [sets, setSets] = useState([{ id: 1, submitted: false, collapsed: false }]);
+const RecordLogParent = ({ exerciseId }) => {
+    const { data, isLoading } = useGetTodaysSetsQuery(exerciseId);
+    const fetchedSets = data?.sets || [];
+    const [createSet] = useCreateSetMutation();
+    const [updateSet] = useUpdateSetMutation();
+    const [deleteSet] = useDeleteSetMutation();
 
-    // Handle set submission
-    const handleSubmitSet = (id) => {
-        setSets((prevSets) =>
-            prevSets.map(set =>
-                set.id === id ? { ...set, submitted: true, collapsed: true } : set
-            )
-        );
+    // Local state for unsaved sets (before they get an actual ID from the backend)
+    const [localSets, setLocalSets] = useState([]);
+
+    if (isLoading) return <p>Loading sets...</p>;
+
+    // Combine fetched sets with local sets
+    const sets = [...fetchedSets, ...localSets];
+
+    // Handle set submission (creates if new, updates if existing)
+    const handleSubmitSet = async (tempId, data) => {
+        const existingSet = fetchedSets.find(set => set.id === tempId);
+
+        if (existingSet) {
+            // Update existing set in backend
+            await updateSet({ id: existingSet.id, data: { ...existingSet, ...data, submitted: true, collapsed: true } });
+        } else {
+            // Create new set in backend
+            const response = await createSet({ exerciseId, ...data, submitted: true, collapsed: true });
+
+            if (response?.data?.id) {
+                // Replace temp set with real ID from backend
+                setLocalSets(prev =>
+                    prev.map(set => (set.id === tempId ? { ...response.data } : set))
+                );
+            }
+        }
     };
 
     // Toggle collapse state
-    const toggleCollapse = (id) => {
-        setSets((prevSets) =>
-            prevSets.map(set =>
-                set.id === id ? { ...set, collapsed: !set.collapsed } : set
-            )
-        );
+    const toggleCollapse = async (id, collapsed) => {
+        await updateSet({ id, data: { collapsed: !collapsed } });
     };
 
-    // Add new set
+    // Add new local set (not saved yet)
     const addSet = () => {
-        // Check if all sets are submitted
         if (sets.some(set => !set.submitted)) {
             alert("Please submit the current set before adding a new one.");
             return;
         }
-
-        setSets([...sets, { id: sets.length + 1, submitted: false, collapsed: false }]);
+        setLocalSets([...localSets, { id: Date.now(), submitted: false, collapsed: false }]);
     };
 
     // Remove a set (only if it's not submitted)
-    const removeSet = (id) => {
-        const setToRemove = sets.find(set => set.id === id);
-
-        if (setToRemove.submitted) {
+    const removeSet = async (id, submitted) => {
+        if (submitted) {
             alert("You cannot remove a submitted set.");
             return;
         }
 
-        setSets(sets.filter(set => set.id !== id));
+        if (fetchedSets.some(set => set.id === id)) {
+            await deleteSet(id);
+        } else {
+            setLocalSets(prev => prev.filter(set => set.id !== id));
+        }
     };
 
     return (
@@ -56,15 +75,15 @@ const RecordLogParent = ({exerciseId}) => {
             {sets.map((set) => (
                 <div key={set.id} className="recordSetContainer">
                     {set.collapsed ? (
-                        <div className="collapsedSet" onClick={() => toggleCollapse(set.id)}>
+                        <div className="collapsedSet" onClick={() => toggleCollapse(set.id, set.collapsed)}>
                             <span>Set {set.id}</span>
-                            <span className="arrow"><IoIosArrowDown/></span>
+                            <span className="arrow"><IoIosArrowDown /></span>
                         </div>
                     ) : (
                         <div className="setHeader">
-                            <RecordSet setId={set.id} onSubmit={() => handleSubmitSet(set.id)} />
+                            <RecordSet setId={set.id} onSubmit={(data) => handleSubmitSet(set.id, data)} />
                             {!set.submitted && (
-                                <button className="removeSetBtn" onClick={() => removeSet(set.id)}>
+                                <button className="removeSetBtn" onClick={() => removeSet(set.id, set.submitted)}>
                                     <IoIosClose size={24} />
                                 </button>
                             )}

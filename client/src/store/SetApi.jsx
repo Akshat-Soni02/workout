@@ -40,4 +40,5 @@ export const {
   useCreateSetMutation,
   useUpdateSetMutation,
   useDeleteSetMutation,
+  useGetTodaysSetsQuery
 } = SetApi;
